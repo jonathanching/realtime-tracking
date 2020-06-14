@@ -1,0 +1,54 @@
+/**
+ * ==================================================================================
+ * Inputs, textfields & button stylesheet
+ * ==================================================================================
+ */
+
+
+/**
+ * @Mixins
+ * ============================================================
+ */
+
+//
+
+
+/**
+ * @Extends
+ * ============================================================
+ */
+
+//
+
+
+/**
+ * Styles
+ * ==================================================================================
+ */
+
+input, textarea {
+    box-sizing: border-box;
+	border: none;
+	resize: none;
+	outline: none;
+	padding: 5px 10px;
+	border-radius: 5px;
+	border: 1px solid var(--field-placeholder-color);
+	background: transparent;
+	color: var(--field-color);
+	box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1);
+
+	@include placeholder {
+		color: var(--field-color);
+	}
+}
+
+input.input--borderless,
+textarea.input--borderless {
+	border: none;
+	box-shadow: none;
+}
+
+textarea {
+	padding: 20px;
+}

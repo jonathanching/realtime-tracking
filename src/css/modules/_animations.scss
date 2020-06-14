@@ -1,0 +1,49 @@
+/**
+ * ==================================================================================
+ * All animation related mixins and stylesheet
+ *
+ * ==================================================================================
+ */
+
+
+/**
+ * @Mixins
+ * ============================================================
+ */
+
+@mixin keyframes($name) {
+	@-webkit-keyframes #{$name} {
+		@content;
+	}
+	@-moz-keyframes #{$name} {
+		@content;
+	}
+	@-ms-keyframes #{$name} {
+		@content;
+	}
+	@keyframes #{$name} {
+		@content;
+	}
+}
+
+
+/**
+ * @Extend
+ * ============================================================
+ */
+
+%blink {
+	@include animation(blink-animation 1s steps(5, start) infinite);
+}
+
+
+/**
+ * @Styles
+ * ============================================================
+ */
+
+@include keyframes(blink-animation) {
+	to {
+		visibility: hidden;
+	}
+}

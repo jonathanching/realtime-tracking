@@ -1,0 +1,80 @@
+/**
+ * ==================================================================================
+ * Utilities
+ * ==================================================================================
+ */
+
+
+/**
+ * @Mixins
+ * ==================================================================================
+ */
+
+@mixin transform($property) {
+    -webkit-transform: $property;
+       -moz-transform: $property;
+        -ms-transform: $property;
+         -o-transform: $property;
+            transform: $property;
+}
+
+@mixin transform-style($property) {
+    -webkit-transform-style: $property;
+       -moz-transform-style: $property;
+        -ms-transform-style: $property;
+         -o-transform-style: $property;
+            transform-style: $property;
+}
+
+@mixin transition($property) {
+    -webkit-transition: $property;
+       -moz-transition: $property;
+        -ms-transition: $property;
+         -o-transition: $property;
+            transition: $property;
+}
+
+@mixin animation($property) {
+    -webkit-animation: $property;
+       -moz-animation: $property;
+        -ms-animation: $property;
+         -o-animation: $property;
+            animation: $property;
+}
+
+@mixin border-radius($property) {
+    -webkit-border-radius: $property;
+            border-radius: $property;
+}
+
+@mixin select($property) {
+  -webkit-touch-callout: $property;
+    -webkit-user-select: $property;
+     -khtml-user-select: $property;
+       -moz-user-select: $property;
+        -ms-user-select: $property;
+            user-select: $property;
+}
+
+@mixin box-shadow($property) {
+    -webkit-box-shadow: $property;
+            box-shadow: $property;
+}
+
+@mixin placeholder {
+    &::-webkit-input-placeholder { @content }
+    &:-moz-placeholder           { @content }
+    &::-moz-placeholder          { @content }
+    &:-ms-input-placeholder      { @content }
+}
+
+
+/**
+ * @General
+ * ==================================================================================
+ */
+
+.hidden {
+    display: none;
+}
+

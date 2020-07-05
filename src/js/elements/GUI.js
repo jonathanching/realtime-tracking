@@ -97,6 +97,22 @@ export default class GUI {
 		return li;
 	}
 
+	/**
+	 * Create system message obj
+	 * @param  {String} msg
+	 * @return {Object}
+	 */
+	createSystemMessage(msg) {
+		return {
+			user: {
+				id: '1234-5678-9',
+				name: 'System',
+			},
+			message: msg,
+			data: '',
+		};
+	}
+
 
 	/**
 	 * ==================================================================================
@@ -183,14 +199,9 @@ export default class GUI {
 	 * @param {String} msg
 	 */
 	addSystemMessage(msg) {
-		this.addMessage({
-			user: {
-				id: '1234-5678-9',
-				name: 'System',
-			},
-			message: msg,
-			data: '',
-		}, true);
+		this.addMessage(
+			this.createSystemMessage(msg)
+		, true);
 	}
 
 	/**

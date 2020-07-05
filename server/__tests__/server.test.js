@@ -159,9 +159,9 @@ describe('Event handlers', () => {
 
             /* Removal of user */
             user.events.disconnect();
-            /* ...User should not be found */
+            /* ...user should not be found */
             expect(user.getUser(socket.id)).toBe(-1);
-            /* ...Certain socket events should be called */
+            /* ...certain socket events should be called */
             expect(serCalls[0][0]).toBe('remove_user');
             expect(serCalls[0][1]).toBe(socket.id);
 
@@ -199,7 +199,7 @@ describe('Event handlers', () => {
 
             /* Sending of message */
             message.events.new_message(msgObj);
-            /* ...Certain socket events should be called */
+            /* ...certain socket events should be called */
             expect(serCalls[serCalls.length - 1][0]).toBe('new_message');
             msgObj.date = expect.any(String);
             expect(serCalls[serCalls.length - 1][1]).toEqual(msgObj);

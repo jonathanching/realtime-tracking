@@ -43,8 +43,50 @@ describe('GUI.js', () => {
 		/* ...should enable textarea */
 		expect(guiObj.domMsgInput.disabled).toBeFalsy();
 		/* ...should see welcome message */
-		// console.log(guiObj.domChatList);
+		let messages = guiObj.domChatList.getElementsByTagName('li');
+		expect(messages[messages.length - 1].innerHTML)
+			.toEqual(
+				guiObj.createMsg(
+					guiObj.createSystemMessage('Welcome to the Chat Room ' + userTmp.name + '!')
+				, true).innerHTML
+			);
 
+
+		done();
+	});
+
+	test('can see new messages', (done) => {
+		/* Trigger message method */
+		let message = {
+			user: userTmp,
+			message: 'This is a new message'
+		};
+		guiObj.addMessage(message);
+
+		/* ...should see new message */
+		let messages = guiObj.domChatList.getElementsByTagName('li');
+		expect(messages[messages.length - 1].innerHTML)
+			.toEqual(guiObj.createMsg(message).innerHTML);
+
+
+		done();
+	});
+
+	test('can see connected & disconnected user', (done) => {
+		/* Trigger adding of user method */
+		guiObj.addUser(userTmp);
+
+		/* ...should see new users */
+		let users = guiObj.domUsersList.getElementsByTagName('li');
+		expect(users[users.length - 1].innerHTML)
+			.toEqual(guiObj.createUser(userTmp).innerHTML);
+
+		/* Trigger disconnection of user method */
+		guiObj.removeUser(userTmp.id);
+
+		/* ...should have the `disabled` property */
+		let user = guiObj.domUsersList.querySelectorAll('li.disabled[data-id="' + userTmp.id + '"]')[0];
+		expect(user).toBeDefined();
 
 		done();
 	});

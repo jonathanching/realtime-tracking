@@ -65,8 +65,9 @@ export default class GUI {
 
 	/**
 	 * Create message DOM element
-	 * @return {Object} msg
+	 * @param  {Object} msg
 	 * @param  {Boolean} isSystem
+	 * @return {DOMElement}
 	 */
 	createMsg(msg, isSystem = false) {
 		/* Create DOM elements for... */
@@ -111,6 +112,19 @@ export default class GUI {
 			message: msg,
 			data: '',
 		};
+	}
+
+	/**
+	 * Create user DOM element
+	 * @param  {Object} 	user
+	 * @return {DOMElement}
+	 */
+	createUser(user) {
+		let li = document.createElement('li');
+		li.dataset.id = user.id;
+		li.appendChild(document.createTextNode(user.name));
+
+		return li;
 	}
 
 
@@ -212,11 +226,9 @@ export default class GUI {
 		if(!this.domUsersList) return;
 
 		/* Create list and append to the DOM */
-		let li = document.createElement('li');
-		li.dataset.id = user.id;
-		li.appendChild(document.createTextNode(user.name));
-
-		this.domUsersList.appendChild(li);
+		this.domUsersList.appendChild(
+			this.createUser(user)
+		);
 	}
 
 	/**

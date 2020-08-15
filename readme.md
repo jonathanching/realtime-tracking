@@ -1,2 +1,2 @@
-### Chat Room
-A simple chat application skeleton using Express.js + Socket.io + JEST
+### Realtime Tracking
+A simple tracking application using Express.js + Socket.io + Redis + OpenLayer

@@ -1,14 +1,17 @@
 /**
  * ==================================================================================
- * Message.js: Handles all messages websocket events
+ * GPS.js: Handles all GPS/location websocket events
  * ==================================================================================
  **/
 
 const global = require('../data/Global.js');
 
-let Message = function(io, socket) {
+let GPS = function(io, socket, redis, subscriber, publisher) {
 	this.io = io;
 	this.socket = socket;
+	this.redis = redis;
+	this.subscriber = subscriber;
+	this.publisher = publisher;
 
 
 	//
@@ -16,7 +19,7 @@ let Message = function(io, socket) {
 
 	/* Match method to specified events */
 	this.events = {
-		new_message: newMessage.bind(this),
+		lastKnownLocation: setLocation.bind(this),
 	};
 }
 
@@ -27,20 +30,14 @@ let Message = function(io, socket) {
  * ==================================================================================
  **/
 
-function newMessage(msg) {
-	/* User validation */
-	if(msg.user.id !== this.socket.id)
-		return;
+function setLocation(data) {
+	let location = JSON.stringify(data);
 
-	/* Add date */
-	let currentDate = new Date();
-	msg.date = currentDate.getHours() + ':' + currentDate.getMinutes();
-
-	/* Notify clients of the new message */
-	this.io.sockets.emit('new_message', msg);
+	this.redis.set('location', location);
+	this.publisher.publish('locationUpdate', location);
 }
 
 
 
 
-module.exports = Message;
+module.exports = GPS;

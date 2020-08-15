@@ -1,0 +1,68 @@
+/**
+ * ==================================================================================
+ * OpenLayer map stylesheet
+ * ==================================================================================
+ **/
+
+/**
+ * @Mixins
+ * ============================================================
+ */
+
+//
+
+
+/**
+ * @Extends
+ * ============================================================
+ */
+
+//
+
+
+/**
+ * Styles
+ * ==================================================================================
+ */
+
+.controls {
+
+	&__buttons {
+	    max-width: 200px;
+	    margin: auto;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-content: flex-start;
+		padding: 1em;
+
+		> button {
+			font-size: 1.5em;
+			width: 31.3333%;
+			height: 50px;
+			margin: 1%;
+			border: none;
+			background: transparent;
+			cursor: pointer;
+			outline: none;
+		}
+
+		> button[data-arrow] {
+			background: var(--bg-color);
+			border: 2px solid var(--bg-color);
+			box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.2);
+			@include border-radius(10px);
+			@include transition(all var(--anim-trans));
+		}
+
+		> button[data-arrow]:hover {
+			background: var(--bg-h-color);
+			border-color: var(--bg-h-color);
+		}
+
+		> button[data-arrow]:active {
+			background: var(--bg-f-color);
+			border-color: var(--bg-f-color);
+		}
+	}
+}

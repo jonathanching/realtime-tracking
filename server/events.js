@@ -4,16 +4,26 @@
  * ==================================================================================
  **/
 
-const User = require('./events/User.js');
-const Message = require('./events/Message.js');
+const GPS = require('./events/GPS.js');
 
-module.exports = function(io) {
+module.exports = function(io, redis, subscriber, publisher) {
 
 	io.on('connection', function(socket) {
+		console.log('socket created');
+
+		/* Get current location */
+		redis.get('location', (err, res) => {
+			socket.emit('locationUpdate', res);
+		});
+
+		socket.on('disconnect', function() {
+			console.log('socket disconnected');
+		});
+
+
 		/* List down all event managers */
 		let managers = {
-			user: new User(io, socket),
-			message: new Message(io, socket)
+			gps: new GPS(io, socket, redis, subscriber, publisher),
 		};
 
 		/* Bind all specified events to websocket connection */
@@ -24,4 +34,22 @@ module.exports = function(io) {
 	        }
 	    }
 	});
+
+
+	/**
+	 * @Redis Events
+	 * ==================================================================================
+	 **/
+
+	subscriber.on('subscribe', function (channel, count) {
+        console.log('client subscribed to ' + channel);
+	});
+
+	subscriber.on('message', (channel,  message) => {
+		console.log('client channel ' + channel + ': ' + message);
+		io.emit(channel, message);
+	});
+
+
+	subscriber.subscribe('locationUpdate');
 }

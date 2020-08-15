@@ -6,48 +6,32 @@
         <base href="/" />
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Chat Room</title>
+        <title>Realtime Tracking</title>
         <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
-        <meta name="description" content="Chat Room">
+        <meta name="description" content="Realtime Tracking">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <meta property="og:title" content="Chat Room">
-        <meta property="og:description" content="Chat Room">
+        <meta property="og:title" content="Realtime Tracking">
+        <meta property="og:description" content="Realtime Tracking">
         <meta property="og:url" content="/">
-        <meta property="og:site_name" content="Chat Room">
+        <meta property="og:site_name" content="Realtime Tracking">
         <meta property="og:type" content="website">
 
     </head>
     <body>
 
-        <noscript>
-            <strong>We're sorry but Chat Room doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-        </noscript>
-
         <div id="app">
 
-            <div class="chat">
-
-                <div id="userModal" class="chat__overlay">
-                    <h4>Chat Room</h4>
-                    <input id="userInput" type="text" placeholder="Enter your name to proceed..." autocomplete="false">
+            <div id="map"></div>
+            <div class="controls">
+                <div class="controls__buttons">
+                    <button type="button" disabled></button>
+                    <button type="button" class="arrow" data-arrow="up">⇧</button>
+                    <button type="button" disabled></button>
+                    <button type="button" class="arrow" data-arrow="left">⇦</button>
+                    <button type="button" class="arrow" data-arrow="down">⇩</button>
+                    <button type="button" class="arrow" data-arrow="right">⇨</button>
                 </div>
-                <div class="chat__inner">
-                    <section class="chat__box">
-
-                        <ul id="chatMessages" class="chat__messages"></ul
-                        ><div class="chat__users">
-                            <h6>Online</h6>
-                            <ul id="chatUsers"></ul>
-                        </div>
-
-                    </section>
-                    <section class="chat__gui">
-                        <div></div>
-                        <textarea id="msgInput" placeholder="Enter your message here..."></textarea>
-                    </section>
-                </div>
-
             </div>
 
         </div>

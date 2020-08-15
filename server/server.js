@@ -36,7 +36,12 @@ if (config.isDev()) {
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
-require('./events.js')(io);
+const Redis = require('ioredis');
+const redis = new Redis.Cluster(config.redisCluster());
+const subscriber = new Redis(config.redisPort);
+const publisher = new Redis(config.redisPort);
+
+require('./events.js')(io, redis, subscriber, publisher);
 
 
 
@@ -47,11 +52,9 @@ require('./events.js')(io);
  **/
 /* Serve static files */
 app.use(express.static(DIST_DIR));
-
 app.get('/', (req, res) => {
 	res.sendFile(HTML_FILE);
 });
-
 
 
 

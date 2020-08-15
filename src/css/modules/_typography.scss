@@ -67,6 +67,7 @@ input, textarea, button {
 	font-family: $font, sans-serif;
 	font-size: 1em;
 	font-weight: 100;
+	color: var(--font-color);
 
 	@include placeholder {
 		font-family: $font, sans-serif;

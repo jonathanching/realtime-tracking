@@ -76,5 +76,12 @@ module.exports = {
 			filename: "styles.css",
 			chunkFilename: "[id].css"
 		}),
+
+        new CopyWebpackPlugin({
+        	patterns: [
+	            {from: 'src/favicon.ico', to: ''},
+	            {from: 'src/images', to: 'images/'},
+            ]
+        }),
 	],
 };
